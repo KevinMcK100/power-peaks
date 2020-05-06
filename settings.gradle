@@ -1,0 +1,5 @@
+rootProject.name = 'power-peaks'
+
+include 'oauth'
+include 'core'
+
