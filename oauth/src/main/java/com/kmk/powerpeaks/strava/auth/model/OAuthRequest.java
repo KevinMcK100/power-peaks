@@ -1,12 +1,12 @@
 package com.kmk.powerpeaks.strava.auth.model;
 
-import com.google.api.client.util.Key;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class OAuthRequest implements RequestBean {
+public class OAuthRequest {
 
-    @Key("client_secret")
+    @JsonProperty("client_secret")
     private String clientSecret;
-    @Key("client_id")
+    @JsonProperty("client_id")
     private long clientId;
 
     public void setClientSecret(String clientSecret){

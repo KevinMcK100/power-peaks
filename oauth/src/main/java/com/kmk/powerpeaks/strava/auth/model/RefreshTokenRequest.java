@@ -1,15 +1,16 @@
 package com.kmk.powerpeaks.strava.auth.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.api.client.util.Key;
 
 public class RefreshTokenRequest extends OAuthRequest {
 
 	private static final String REFRESH_TOKEN_GRANT_TYPE = "refresh_token";
 
-	@Key("refresh_token")
+	@JsonProperty("refresh_token")
 	private String refreshToken;
 
-	@Key("grant_type")
+	@JsonProperty("grant_type")
 	private String grantType = REFRESH_TOKEN_GRANT_TYPE;
 
 	public void setRefreshToken(String refreshToken){

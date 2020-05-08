@@ -89,12 +89,12 @@ public class StravaAuthService implements AuthService {
                 String.format(MISSING_REQUIRED_CONFIG_ERROR, CLIENT_ID, athleteId)));
         String clientSecret = authConfig.getClientSecret().orElseThrow(() -> new RuntimeException(
                 String.format(MISSING_REQUIRED_CONFIG_ERROR, CLIENT_SECRET, athleteId)));
-        String authCode = authConfig.getClientSecret().orElseThrow(() -> new RuntimeException(
+        String authCode = authConfig.getAuthCode().orElseThrow(() -> new RuntimeException(
                 String.format(MISSING_REQUIRED_CONFIG_ERROR, AUTH_CODE, athleteId)));
 
         request.setClientId(Long.parseLong(clientId));
         request.setClientSecret(clientSecret);
-        request.setCode(authCode);
+        request.setAuthCode(authCode);
 
         LOGGER.info("AuthorisationRequest: " + request.toString());
 
@@ -114,7 +114,7 @@ public class StravaAuthService implements AuthService {
     private Optional<String> getRefreshToken(long athleteId, OAuthRequest oAuthRequest) {
 
         return authHttpClient.getAccessToken(oAuthRequest).exceptionally(throwable -> {
-            LOGGER.log(Level.SEVERE, "Failed to retrieve access token from Strava OAuth API");
+            LOGGER.log(Level.SEVERE, "Failed to retrieve access token from Strava OAuth API", throwable);
             return Optional.empty();
         }).thenCompose(responseOpt -> responseOpt
                 .map(response -> saveOAuthData(athleteId,

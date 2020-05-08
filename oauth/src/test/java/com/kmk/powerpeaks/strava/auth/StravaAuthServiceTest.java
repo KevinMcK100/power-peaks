@@ -33,7 +33,7 @@ import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CompletionStage;
 
 @RunWith(MockitoJUnitRunner.class)
-public class StravaStravaAuthServiceTest {
+public class StravaAuthServiceTest {
 
     private static final String ATHLETE_ID = "1";
     private static final long ATHLETE_ID_LONG = 1L;
@@ -47,14 +47,10 @@ public class StravaStravaAuthServiceTest {
     private static final long EXPIRED_EPOCH = 78691238L;
     private static final long FUTURE_EPOCH = Instant.now().plusSeconds(60).getEpochSecond();
 
-
     private StravaAuthService target;
 
     @Mock
     AuthConfig authConfig;
-
-    @Mock
-    DynamoDbEnhancedClient ddb;
 
     @Mock
     AuthHttpClient authHttpClient;

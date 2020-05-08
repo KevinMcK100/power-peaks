@@ -1,16 +1,18 @@
 package com.kmk.powerpeaks.strava.auth.model;
 
-import com.google.api.client.util.Key;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class AccessTokenResponse {
 
-    @Key("access_token")
+    @JsonProperty("access_token")
     private String accessToken;
 
-    @Key("refresh_token")
+    @JsonProperty("refresh_token")
     private String refreshToken;
 
-    @Key("expires_at")
+    @JsonProperty("expires_at")
     private long expiresAt;
 
     public String getAccessToken() {

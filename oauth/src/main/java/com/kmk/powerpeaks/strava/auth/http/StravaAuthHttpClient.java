@@ -7,6 +7,7 @@ import com.kmk.powerpeaks.strava.auth.model.AccessTokenResponse;
 import com.kmk.powerpeaks.strava.auth.model.OAuthRequest;
 
 import java.net.http.HttpResponse;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.CompletionStage;
@@ -29,7 +30,8 @@ public class StravaAuthHttpClient implements AuthHttpClient {
     public CompletionStage<Optional<AccessTokenResponse>> getAccessToken(OAuthRequest request) {
 
         AccessTokenResponseMapper mapper = new AccessTokenResponseMapper();
-        return httpClient.executePostRequest(request, STRAVA_OAUTH_REQUEST_URL, List.of())
+        List<String> headers = List.of("Content-Type", "application/json");
+        return httpClient.executePostRequest(request, STRAVA_OAUTH_REQUEST_URL, headers)
                          .thenApply(HttpResponse::body)
                          .thenApply(mapper::readAccessTokenResponse)
                          .thenApply(Optional::of);

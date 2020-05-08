@@ -8,6 +8,7 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.time.Duration;
 import java.util.List;
+import java.util.Optional;
 import java.util.concurrent.CompletionStage;
 
 public class AsyncHttpClient {
@@ -36,9 +37,13 @@ public class AsyncHttpClient {
 
     private HttpRequest.Builder buildBaseRequest(String url, List<String> headers) {
 
-        return HttpRequest.newBuilder()
+        HttpRequest.Builder builder = HttpRequest.newBuilder()
                           .uri(URI.create(url))
-                          .timeout(Duration.ofSeconds(10))
-                          .headers(headers.toArray(String[]::new));
+                          .timeout(Duration.ofSeconds(10));
+        if (headers != null && !headers.isEmpty()) {
+            builder.headers(headers.toArray(String[]::new));
+        }
+
+        return builder;
     }
 }

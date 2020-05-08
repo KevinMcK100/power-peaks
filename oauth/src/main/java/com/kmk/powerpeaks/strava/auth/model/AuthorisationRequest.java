@@ -1,23 +1,23 @@
 package com.kmk.powerpeaks.strava.auth.model;
 
-import com.google.api.client.util.Key;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class AuthorisationRequest extends OAuthRequest {
 
 	private static final String AUTH_CODE_GRANT_TYPE = "authorization_code";
 
-	@Key
-	private String code;
+	@JsonProperty("code")
+	private String authCode;
 
-	@Key("grant_type")
+	@JsonProperty("grant_type")
 	private String grantType = AUTH_CODE_GRANT_TYPE;
 
-	public void setCode(String code){
-		this.code = code;
+	public void setAuthCode(String authCode){
+		this.authCode = authCode;
 	}
 
-	public String getCode(){
-		return code;
+	public String getAuthCode(){
+		return authCode;
 	}
 
 	public void setGrantType(String grantType){
@@ -32,7 +32,7 @@ public class AuthorisationRequest extends OAuthRequest {
  	public String toString(){
 		return 
 			"AuthorisationRequest{" +
-			"code = '" + getCode() + '\'' +
+			"authCode = '" + getAuthCode() + '\'' +
 			", grant_type = '" + getGrantType() + '\'' +
 			", client_secret = '" + getClientSecret() + '\'' +
 			", client_id = '" + getClientId() + '\'' +
