@@ -1,6 +1,6 @@
 # Power Peaks
 
-### What is Power Peaks
+## What is Power Peaks
 The Power Peaks project is intended to make use of the Strava API to fetch an athlete's activity and power data for 
 analysis. Streams of power data ingested from the Strava API are used to calculate power PRs over various durations. 
 Users are then notified of any PRs achieved on their latest activities.
@@ -8,9 +8,9 @@ Users are then notified of any PRs achieved on their latest activities.
 Currently this project does not support multiple users. It is intended to be used by anyone who has an API Application
 set up with Strava and can use their Client ID and Client Secret to preform OAuth
 
-### Installation
+## Installation
 
-#### OAuth with Strava API
+### OAuth with Strava API
 Before running the project you will need to undertake a few steps to authenticate with Strava's API using the `oauth`
 module provided. 
 - Sign up for an API Application with Strava if you don't already have one - https://www.strava.com/register
@@ -27,7 +27,7 @@ access to private activities also)
 API Application against
 - When you execute the application you should see your athlete name logged to the console
 
-###### Few Side Notes on OAuth Process
+##### Few Side Notes on OAuth Process
 - The auth code generated in the steps above can only be used once
 - You will only need to undertake the above steps on the initial set up of the application. From that point forward, the 
 expiry time and refresh token are used for token management and you should always receive a valid token by simply 
@@ -37,9 +37,9 @@ from the default profile by copying the `aws-config.sample.yml` file found under
 `aws-config.yml` config file with your profile name and region set as properties
 - You will need to create the `AUTH` table in DynamoDB with an athlete_id as the key
 
-#### Backfill
+### Backfill
 
-###### Backfill Activities
+##### Backfill Activities
 - Create a new `ACTIVITIES` table in DynamoDB with `activity_id` as the key
 - Under the `resources` folder in the `backfill` module, update the `backfill-activities-config.yml` config file
 setting the `startEpoch` and `endEpoch` properties to the time window you wish to backfill 
@@ -48,7 +48,7 @@ setting the `startEpoch` and `endEpoch` properties to the time window you wish t
 activities API. 100 tended to give best results on a full backfill
 - With config set, kick it off the backfill by executing `Main.backfillActivities` 
 
-###### Backfill Power Streams
+##### Backfill Power Streams
 - Create a new `POWER` table in DynamoDB with `activity_id` as the key
 - Under the `resources` folder in the `backfill` module, update the  `backfill-power-config.yml` config file setting the 
 `overwriteExisting` boolean and `activities` list
@@ -58,12 +58,12 @@ activities API. 100 tended to give best results on a full backfill
     - Leave the `activities` list empty to backfill all activities in the `ACTIVITIES` table
 - With config set, kick it off the backfill by executing `Main.backfillPower`
 
-### Completed
+## Completed
 - OAuth authentication with Strava
 - Backfill of all historical Strava activities
 - Backfill of all historical power streams
 
-### WIP
+## WIP
 - Ingest new and updated activities from Strava activities webhook
 - Fetch power stream data for new activities
 - Implement scrolling window averaging algorithm to calculate highest average power of various durations in power stream
@@ -72,10 +72,10 @@ activities API. 100 tended to give best results on a full backfill
 - Calculate PRs in new activity power streams using historical power data
 - Implement email notification mechanism (hopefully move to a simple Android app in phase 2)
 
-### Technologies
+## Technologies
 - AWS DynamoDB
 - AWS API Gateway
 - AWS Lambda Functions
 - OAuth 2.0
-- Guice Dependency Injection
+- Guice DI
 - Mockito
