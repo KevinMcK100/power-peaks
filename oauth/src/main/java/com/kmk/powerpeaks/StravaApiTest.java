@@ -1,5 +1,10 @@
 package com.kmk.powerpeaks;
 
+import com.google.inject.Guice;
+import com.google.inject.Injector;
+import com.kmk.powerpeaks.strava.auth.guice.AuthModule;
+import com.kmk.powerpeaks.strava.auth.service.AuthService;
+import com.kmk.powerpeaks.strava.auth.service.StravaAuthService;
 import io.swagger.client.ApiClient;
 import io.swagger.client.ApiException;
 import io.swagger.client.Configuration;
@@ -15,21 +20,16 @@ import java.net.http.HttpResponse;
 
 public class StravaApiTest {
 
+    private static final Long ATHLETE_ID = 1L;
+
     public static void main(String[] args) throws ApiException {
 
-        HttpClient client = HttpClient.newHttpClient();
-        HttpRequest request = HttpRequest.newBuilder()
-                                         .uri(URI.create("http://openjdk.java.net/"))
-                                         .build();
-        client.sendAsync(request, HttpResponse.BodyHandlers.ofString())
-              .thenApply(HttpResponse::body)
-              .thenAccept(System.out::println)
-              .join();
-
+        Injector injector = Guice.createInjector(new AuthModule());
+        AuthService authService = injector.getInstance(StravaAuthService.class);
 
         ApiClient defaultClient = Configuration.getDefaultApiClient();
         OAuth oAuth = (OAuth) defaultClient.getAuthentication("strava_oauth");
-        oAuth.setAccessToken("");
+        oAuth.setAccessToken(authService.getValidAuthToken(ATHLETE_ID).get());
 
         AthletesApi athleteApi = new AthletesApi();
         DetailedAthlete athlete = athleteApi.getLoggedInAthlete();

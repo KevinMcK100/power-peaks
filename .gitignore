@@ -1,10 +1,8 @@
-/oauth/src/main/resources/auth-config.yml
-/oauth/src/main/resources/aws-config.yml
+**/auth-config.yml
+**/aws-config.yml
 
-/oauth/out/
-/oauth/build/
-/core/out/
-/core/build/
+**/out/
+**/build/
 
 # Created by https://www.gitignore.io/api/macos,intellij
 # Edit at https://www.gitignore.io/?templates=macos,intellij

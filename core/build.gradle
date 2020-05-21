@@ -84,6 +84,9 @@ dependencies {
     swaggerCompile 'joda-time:joda-time:2.9.9'
 
     compile sourceSets.swagger.output
+    compile group: 'com.google.inject', name: 'guice', version: '4.0'
+    compile group: 'software.amazon.awssdk', name: 'dynamodb-enhanced', version: '2.13.3'
+    compile group: 'com.fasterxml.jackson.dataformat', name: 'jackson-dataformat-yaml', version: '2.11.0'
 
     runtime 'com.squareup.okhttp:okhttp:2.7.5'
     runtime 'com.squareup.okhttp:logging-interceptor:2.7.5'

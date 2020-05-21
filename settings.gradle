@@ -2,4 +2,5 @@ rootProject.name = 'power-peaks'
 
 include 'oauth'
 include 'core'
-
+include 'strava-api'
+include 'backfill'

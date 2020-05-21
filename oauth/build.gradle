@@ -1,6 +1,6 @@
-plugins {
-    id 'java'
-}
+description = 'oauth'
+
+apply plugin: 'java'
 
 group 'com.kmk'
 version '1.0-SNAPSHOT'
@@ -27,6 +27,4 @@ dependencies {
     compile 'com.google.code.gson:gson:2.3.1'
     compile 'com.google.http-client:google-http-client:1.23.0'
     compile 'com.google.http-client:google-http-client-gson:1.21.0'
-
 }
-

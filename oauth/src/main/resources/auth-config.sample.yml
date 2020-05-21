@@ -1,4 +1,12 @@
 ---
+# Client ID and Client Secret can be found at https://www.strava.com/settings/api after you have set up your
+# API Application with Strava
 clientId: 12345
 clientSecret: 7fa3bc426def7ffe35dc5a35bb6ef7ffe35dc42
+
+# Auth code can be found by hitting the following URL (updating client_id)
+# https://www.strava.com/oauth/authorize?client_id=12345&response_type=code&redirect_uri=http://developers.strava.com&approval_prompt=force&scope=activity:read_all
+# The response will look something like http://developers.strava.com/?state=&code=4b3ac53de5bf2fbd32aedb23ff8ba66d6d7e7&scope=read,activity:read_all
+# Copy the string after "code" and paste it here. Note that it expires after one use at which point your access token
+# and refresh token will be used from here on. You should only need to do this for the initial interaction with the Strava API.
 authCode: 4b3ac53de5bf2fbd32aedb23ff8ba66d6d7e7

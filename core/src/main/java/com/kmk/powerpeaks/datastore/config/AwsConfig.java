@@ -1,4 +1,4 @@
-package com.kmk.powerpeaks.strava.auth.config;
+package com.kmk.powerpeaks.datastore.config;
 
 import java.util.Optional;
 

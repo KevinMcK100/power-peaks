@@ -1,0 +1,17 @@
+apply plugin: 'java'
+
+group 'com.kmk'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+    testImplementation 'org.assertj:assertj-core:3.15.0'
+    testImplementation 'org.mockito:mockito-core:2.28.2'
+
+    compile project (':core')
+    compile project (':oauth')
+}
